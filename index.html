@@ -1,0 +1,2597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>MP MedTour - Medical Tourism Platform</title>
+
+<style>
+
+/* =========================
+   BASIC STYLE
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f7f8;
+    color:#1f2937;
+}
+
+header{
+    background:linear-gradient(135deg,#075e54,#0f766e);
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#fbbf24;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:18px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#fbbf24;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    padding:65px 7%;
+    background:linear-gradient(135deg,#e0f2f1,#fef3c7);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+
+.hero-text{
+    max-width:650px;
+}
+
+.hero h1{
+    font-size:44px;
+    color:#075e54;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+    color:#4b5563;
+}
+
+.hero button{
+    margin-top:25px;
+    padding:14px 25px;
+    border:0;
+    border-radius:10px;
+    background:#f97316;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.hero-icon{
+    font-size:150px;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:55px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    color:#075e54;
+    font-size:32px;
+}
+
+.section-title p{
+    color:#6b7280;
+    margin-top:8px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:12px;
+    margin-bottom:30px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#0f766e;
+}
+
+
+/* =========================
+   HOSPITAL CARDS
+========================= */
+
+.hospital-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.hospital-card{
+    background:white;
+    border-radius:15px;
+    padding:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    transition:.3s;
+    border-top:5px solid #0f766e;
+}
+
+.hospital-card:hover{
+    transform:translateY(-5px);
+}
+
+.hospital-icon{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.hospital-card h3{
+    color:#075e54;
+    margin-bottom:8px;
+}
+
+.city{
+    color:#f97316;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.type{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    background:#ecfdf5;
+    color:#047857;
+    margin:8px 0;
+    font-size:12px;
+}
+
+.location{
+    color:#6b7280;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.treatments{
+    margin-top:12px;
+}
+
+.tag{
+    display:inline-block;
+    background:#eef2ff;
+    color:#3730a3;
+    padding:5px 8px;
+    margin:3px;
+    border-radius:5px;
+    font-size:11px;
+}
+
+.details-btn{
+    margin-top:15px;
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:8px;
+    background:#075e54;
+    color:white;
+    cursor:pointer;
+}
+
+.details-btn:hover{
+    background:#064e47;
+}
+
+
+/* =========================
+   JOURNEY
+========================= */
+
+.journey{
+    background:white;
+}
+
+.timeline{
+    max-width:900px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:5px;
+    position:relative;
+}
+
+.step{
+    text-align:center;
+    flex:1;
+    position:relative;
+    z-index:2;
+}
+
+.circle{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#d1d5db;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:20px;
+}
+
+.step.active .circle{
+    background:#0f766e;
+}
+
+.step.completed .circle{
+    background:#16a34a;
+}
+
+.step p{
+    font-size:12px;
+    margin-top:8px;
+}
+
+.progress{
+    max-width:900px;
+    margin:20px auto;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:10px;
+}
+
+.progress-bar{
+    width:25%;
+    height:100%;
+    background:#0f766e;
+    border-radius:10px;
+    transition:.4s;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.services{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.service{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.service div{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.service h3{
+    color:#075e54;
+    margin-bottom:8px;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-container{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    background:#f97316;
+    color:white;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+
+/* =========================
+   TRAVEL
+========================= */
+
+.travel-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.travel-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.travel-card .icon{
+    font-size:45px;
+}
+
+
+/* =========================
+   CHATBOT
+========================= */
+
+.chatbot{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:999;
+}
+
+.chat-button{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:none;
+    background:#075e54;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+.chat-window{
+    display:none;
+    position:absolute;
+    right:0;
+    bottom:70px;
+    width:320px;
+    height:430px;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 5px 25px rgba(0,0,0,.25);
+    overflow:hidden;
+}
+
+.chat-header{
+    background:#075e54;
+    color:white;
+    padding:15px;
+    font-weight:bold;
+}
+
+.chat-body{
+    height:320px;
+    padding:12px;
+    overflow-y:auto;
+}
+
+.message{
+    padding:9px 12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    max-width:85%;
+    font-size:13px;
+}
+
+.bot{
+    background:#e5e7eb;
+}
+
+.user{
+    background:#ccfbf1;
+    margin-left:auto;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ddd;
+}
+
+.chat-input input{
+    border:0;
+    border-radius:0;
+}
+
+.chat-input button{
+    width:55px;
+    border:0;
+    background:#0f766e;
+    color:white;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:2000;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.modal-content{
+    background:white;
+    max-width:700px;
+    width:100%;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:18px;
+    padding:30px;
+}
+
+.close{
+    float:right;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.modal-content h2{
+    color:#075e54;
+    margin-bottom:10px;
+}
+
+.modal-content h3{
+    margin-top:20px;
+    margin-bottom:10px;
+    color:#374151;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.dash-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.dash-card h3{
+    color:#075e54;
+}
+
+.number{
+    font-size:32px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#073b36;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+footer p{
+    margin:7px;
+    color:#d1d5db;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    header{
+        padding:15px 4%;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:45px 5%;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .hero-icon{
+        font-size:90px;
+    }
+
+    .search-box{
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:40px 5%;
+    }
+
+    .timeline{
+        overflow-x:auto;
+        padding-bottom:15px;
+    }
+
+    .step{
+        min-width:90px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        🏥 MP <span>MedTour</span>
+    </div>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#hospitals">
+            Hospitals
+        </a>
+
+        <a href="#journey">
+            Tracking
+        </a>
+
+        <a href="#appointment">
+            Appointment
+        </a>
+
+        <a href="#travel">
+            Travel
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <h1>
+            Medical Tourism in Madhya Pradesh
+        </h1>
+
+        <p>
+            Find hospitals, doctors, treatments,
+            appointments, travel information and
+            track your complete medical journey
+            from one platform.
+        </p>
+
+        <button
+        onclick="
+        document.getElementById('hospitals')
+        .scrollIntoView()
+        ">
+
+            Find Hospitals →
+
+        </button>
+
+    </div>
+
+    <div class="hero-icon">
+        🏥
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            Patient Dashboard
+        </h2>
+
+        <p>
+            Your medical tourism journey at one place
+        </p>
+
+    </div>
+
+
+    <div class="dashboard">
+
+        <div class="dash-card">
+
+            <h3>
+                🏥 Hospitals
+            </h3>
+
+            <div
+            class="number"
+            id="hospitalCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <h3>
+                📅 Appointment
+            </h3>
+
+            <div class="number">
+                1
+            </div>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <h3>
+                📄 Reports
+            </h3>
+
+            <div
+            class="number"
+            id="reportCount">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <h3>
+                🔄 Journey
+            </h3>
+
+            <div class="number">
+                25%
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOSPITAL SECTION
+========================= -->
+
+<section id="hospitals">
+
+    <div class="section-title">
+
+        <h2>
+            🏥 Major Hospitals in Madhya Pradesh
+        </h2>
+
+        <p>
+            Search hospitals according to city,
+            type and treatment
+        </p>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <input
+        type="text"
+        id="search"
+        placeholder="🔎 Search hospital or treatment..."
+        onkeyup="filterHospitals()"
+        >
+
+
+        <select
+        id="cityFilter"
+        onchange="filterHospitals()">
+
+            <option value="all">
+                All Cities
+            </option>
+
+            <option value="Bhopal">
+                Bhopal
+            </option>
+
+            <option value="Indore">
+                Indore
+            </option>
+
+            <option value="Jabalpur">
+                Jabalpur
+            </option>
+
+            <option value="Gwalior">
+                Gwalior
+            </option>
+
+        </select>
+
+
+        <select
+        id="typeFilter"
+        onchange="filterHospitals()">
+
+            <option value="all">
+                All Types
+            </option>
+
+            <option value="Government">
+                Government
+            </option>
+
+            <option value="Private">
+                Private
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div
+    class="hospital-grid"
+    id="hospitalGrid">
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     JOURNEY TRACKING
+========================= -->
+
+<section
+class="journey"
+id="journey">
+
+    <div class="section-title">
+
+        <h2>
+            🔄 Patient Journey Tracking
+        </h2>
+
+        <p>
+            Track your medical tourism journey
+            step by step
+        </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <div class="step completed">
+
+            <div class="circle">
+                ✓
+            </div>
+
+            <p>
+                Consultation
+            </p>
+
+        </div>
+
+
+        <div class="step active">
+
+            <div class="circle">
+                2
+            </div>
+
+            <p>
+                Appointment
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="circle">
+                3
+            </div>
+
+            <p>
+                Travel
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="circle">
+                4
+            </div>
+
+            <p>
+                Admission
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="circle">
+                5
+            </div>
+
+            <p>
+                Treatment
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="circle">
+                6
+            </div>
+
+            <p>
+                Recovery
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="circle">
+                7
+            </div>
+
+            <p>
+                Discharge
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="progress">
+
+        <div
+        class="progress-bar"
+        id="progressBar">
+        </div>
+
+    </div>
+
+
+    <div
+    style="
+    text-align:center;
+    margin-top:20px;
+    ">
+
+        <button
+        class="details-btn"
+        style="max-width:250px"
+        onclick="nextJourneyStep()">
+
+            Update Journey Status
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            Our Medical Tourism Services
+        </h2>
+
+    </div>
+
+
+    <div class="services">
+
+
+        <div class="service">
+
+            <div>🏥</div>
+
+            <h3>
+                Hospital Search
+            </h3>
+
+            <p>
+                Find hospitals according
+                to treatment.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div>👨‍⚕️</div>
+
+            <h3>
+                Doctor Consultation
+            </h3>
+
+            <p>
+                Connect with healthcare
+                providers.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div>📅</div>
+
+            <h3>
+                Appointment
+            </h3>
+
+            <p>
+                Book your hospital
+                appointment.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div>📄</div>
+
+            <h3>
+                Medical Reports
+            </h3>
+
+            <p>
+                Upload your medical
+                documents.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div>✈️</div>
+
+            <h3>
+                Travel Assistance
+            </h3>
+
+            <p>
+                Get travel and transport
+                information.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div>🏨</div>
+
+            <h3>
+                Accommodation
+            </h3>
+
+            <p>
+                Find hotels near
+                hospitals.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     APPOINTMENT
+========================= -->
+
+<section id="appointment">
+
+    <div class="section-title">
+
+        <h2>
+            📅 Book Appointment
+        </h2>
+
+        <p>
+            Enter your details to request
+            an appointment
+        </p>
+
+    </div>
+
+
+    <div class="form-container">
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    Patient Name
+                </label>
+
+                <input
+                id="patientName"
+                type="text"
+                placeholder="Enter your name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Age
+                </label>
+
+                <input
+                id="patientAge"
+                type="number"
+                placeholder="Age">
+
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                id="phone"
+                type="tel"
+                placeholder="Mobile number">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                id="email"
+                type="email"
+                placeholder="Email">
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Select Hospital
+            </label>
+
+            <select
+            id="appointmentHospital">
+            </select>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label>
+                    Preferred Date
+                </label>
+
+                <input
+                id="appointmentDate"
+                type="date">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Treatment
+                </label>
+
+                <input
+                id="treatment"
+                type="text"
+                placeholder="e.g. Cardiology">
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Medical Problem / Message
+            </label>
+
+            <textarea
+            id="message"
+            rows="4"
+            placeholder="Describe your requirement...">
+            </textarea>
+
+        </div>
+
+
+        <button
+        class="submit-btn"
+        onclick="bookAppointment()">
+
+            Book Appointment
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REPORT UPLOAD
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            📄 Upload Medical Report
+        </h2>
+
+        <p>
+            Upload PDF, JPG or PNG medical documents
+        </p>
+
+    </div>
+
+
+    <div class="form-container">
+
+        <input
+        type="file"
+        id="report"
+        accept=".pdf,.jpg,.jpeg,.png"
+        onchange="uploadReport()">
+
+
+        <p
+        id="reportStatus"
+        style="
+        margin-top:15px;
+        color:#075e54;
+        ">
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TRAVEL
+========================= -->
+
+<section id="travel">
+
+    <div class="section-title">
+
+        <h2>
+            ✈️ Travel & Stay Assistance
+        </h2>
+
+        <p>
+            Useful information for patients
+            coming to Madhya Pradesh
+        </p>
+
+    </div>
+
+
+    <div class="travel-grid">
+
+
+        <div class="travel-card">
+
+            <div class="icon">
+                ✈️
+            </div>
+
+            <h3>
+                Airport
+            </h3>
+
+            <p>
+                Find nearby airports
+                and travel options.
+            </p>
+
+        </div>
+
+
+        <div class="travel-card">
+
+            <div class="icon">
+                🚆
+            </div>
+
+            <h3>
+                Railway
+            </h3>
+
+            <p>
+                Check railway connectivity
+                to major cities.
+            </p>
+
+        </div>
+
+
+        <div class="travel-card">
+
+            <div class="icon">
+                🚕
+            </div>
+
+            <h3>
+                Transport
+            </h3>
+
+            <p>
+                Local taxi and transportation
+                assistance.
+            </p>
+
+        </div>
+
+
+        <div class="travel-card">
+
+            <div class="icon">
+                🏨
+            </div>
+
+            <h3>
+                Hotels
+            </h3>
+
+            <p>
+                Find accommodation near
+                hospitals.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NOTIFICATIONS
+========================= -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>
+            🔔 Notifications
+        </h2>
+
+    </div>
+
+
+    <div class="form-container">
+
+        <p>
+            ✅ Your consultation has been completed.
+        </p>
+
+        <hr style="margin:15px 0">
+
+
+        <p>
+            📅 Appointment scheduled.
+        </p>
+
+        <hr style="margin:15px 0">
+
+
+        <p>
+            📄 Medical report uploaded successfully.
+        </p>
+
+        <hr style="margin:15px 0">
+
+
+        <p>
+            🔔 Follow-up reminder will be generated.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h2>
+        🏥 MP MedTour
+    </h2>
+
+    <p>
+        Medical Tourism Information &
+        Patient Tracking Platform
+    </p>
+
+    <p>
+        Madhya Pradesh, India
+    </p>
+
+    <p style="margin-top:15px;">
+
+        ⚠️ This prototype is for
+        demonstration purposes.
+
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     CHATBOT
+========================= -->
+
+<div class="chatbot">
+
+
+    <div
+    class="chat-window"
+    id="chatWindow">
+
+
+        <div class="chat-header">
+
+            🤖 MP MedTour Assistant
+
+        </div>
+
+
+        <div
+        class="chat-body"
+        id="chatBody">
+
+
+            <div class="message bot">
+
+                Namaste! 👋
+
+                Main MP MedTour Assistant hoon.
+
+                Aap hospital, treatment,
+                appointment ya travel ke
+                baare mein pooch sakte hain.
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-input">
+
+            <input
+            id="chatInput"
+            type="text"
+            placeholder="Ask something..."
+            onkeypress="
+            if(event.key==='Enter')
+            sendMessage()
+            ">
+
+
+            <button
+            onclick="sendMessage()">
+
+                ➤
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <button
+    class="chat-button"
+    onclick="toggleChat()">
+
+        🤖
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     HOSPITAL DETAILS MODAL
+========================= -->
+
+<div
+class="modal"
+id="hospitalModal">
+
+
+    <div class="modal-content">
+
+        <span
+        class="close"
+        onclick="closeModal()">
+
+            ×
+
+        </span>
+
+
+        <div id="modalData">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- PART 4 KA SCRIPT
+     ISKE BAAD PASTE KARNA HAI -->
+
+
+<script>
+
+/* =========================
+   HOSPITAL DATABASE
+========================= */
+
+const hospitals = [
+
+{
+name:"AIIMS Bhopal",
+city:"Bhopal",
+type:"Government",
+location:"Saket Nagar, Bhopal",
+treatments:[
+"Cardiology",
+"Neurology",
+"Neurosurgery",
+"Oncology",
+"Orthopaedics",
+"Nephrology",
+"Urology",
+"Paediatrics",
+"General Medicine"
+]
+},
+
+{
+name:"Hamidia Hospital",
+city:"Bhopal",
+type:"Government",
+location:"Sultania Road, Royal Market, Bhopal",
+treatments:[
+"General Medicine",
+"General Surgery",
+"Orthopaedics",
+"Emergency Care",
+"Paediatrics",
+"Obstetrics & Gynaecology",
+"ENT",
+"Ophthalmology"
+]
+},
+
+{
+name:"Bhopal Memorial Hospital & Research Centre",
+city:"Bhopal",
+type:"Government",
+location:"Karond, Bhopal",
+treatments:[
+"Cardiology",
+"Nephrology",
+"Urology",
+"Neurology",
+"Neurosurgery",
+"Gastroenterology",
+"Oncology",
+"Pulmonary Medicine",
+"Haematology"
+]
+},
+
+{
+name:"People's Hospital",
+city:"Bhopal",
+type:"Private",
+location:"Ayodhya Bypass Road, Bhopal",
+treatments:[
+"Cardiology",
+"Neurology",
+"Orthopaedics",
+"General Surgery",
+"Obstetrics & Gynaecology",
+"Paediatrics",
+"Nephrology",
+"Urology"
+]
+},
+
+{
+name:"Bansal Hospital",
+city:"Bhopal",
+type:"Private",
+location:"Chuna Bhatti, Shahpura, Bhopal",
+treatments:[
+"Cardiology",
+"Neurology",
+"Neurosurgery",
+"Orthopaedics",
+"Oncology",
+"Urology",
+"Nephrology",
+"General Surgery"
+]
+},
+
+{
+name:"Sagar Multispeciality Hospital",
+city:"Bhopal",
+type:"Private",
+location:"Narmadapuram Road, Bhopal",
+treatments:[
+"Cardiology",
+"Neurology",
+"Orthopaedics",
+"General Surgery",
+"Critical Care",
+"Urology",
+"Gynaecology"
+]
+},
+
+{
+name:"Bombay Hospital Indore",
+city:"Indore",
+type:"Private",
+location:"Eastern Ring Road, Vijay Nagar, Indore",
+treatments:[
+"Cardiology",
+"Neurology",
+"Oncology",
+"Nephrology",
+"Urology",
+"Orthopaedics",
+"Neurosurgery",
+"Gastroenterology",
+"Paediatrics",
+"Kidney Transplant"
+]
+},
+
+{
+name:"CHL Hospitals",
+city:"Indore",
+type:"Private",
+location:"AB Road, LIG Square, Indore",
+treatments:[
+"Cardiology",
+"Oncology",
+"Neurology",
+"Orthopaedics",
+"General Medicine",
+"General Surgery",
+"Critical Care",
+"Nephrology"
+]
+},
+
+{
+name:"Shalby Hospital Indore",
+city:"Indore",
+type:"Private",
+location:"Race Course Road, Indore",
+treatments:[
+"Bone & Joint",
+"Cardiac Sciences",
+"Gastro Sciences",
+"Kidney Sciences",
+"Neuro Sciences",
+"Oncology",
+"Obstetrics & Gynaecology",
+"Paediatrics",
+"Critical Care"
+]
+},
+
+{
+name:"Jupiter Hospital Indore",
+city:"Indore",
+type:"Private",
+location:"Ring Road, Indore",
+treatments:[
+"Cardiology",
+"Cardiac Surgery",
+"Neurology",
+"Neurosurgery",
+"Oncology",
+"Orthopaedics",
+"Nephrology",
+"Urology",
+"Gastroenterology",
+"IVF",
+"Organ Transplant",
+"Robotic Surgery"
+]
+},
+
+{
+name:"M.Y. Hospital Indore",
+city:"Indore",
+type:"Government",
+location:"M.Y. Hospital, Indore",
+treatments:[
+"General Medicine",
+"General Surgery",
+"Orthopaedics",
+"Paediatrics",
+"Neurology",
+"Cardiology",
+"Obstetrics & Gynaecology",
+"Emergency Care"
+]
+},
+
+{
+name:"Super Speciality Hospital Indore",
+city:"Indore",
+type:"Government",
+location:"Nath Mandir Road, Indore",
+treatments:[
+"Cardiology",
+"Neurology",
+"Nephrology",
+"Urology",
+"Neurosurgery",
+"Critical Care"
+]
+},
+
+{
+name:"Jabalpur Hospital & Research Centre",
+city:"Jabalpur",
+type:"Private",
+location:"Russel Chowk, Napier Town, Jabalpur",
+treatments:[
+"Cardiology",
+"Critical Care",
+"Orthopaedics",
+"Neurology",
+"Nephrology",
+"Oncology",
+"Urology",
+"Pulmonary Medicine",
+"Gastroenterology",
+"Paediatrics",
+"Psychiatry"
+]
+},
+
+{
+name:"Shalby Hospital Jabalpur",
+city:"Jabalpur",
+type:"Private",
+location:"Ahinsa Chowk, Kachnar Road, Jabalpur",
+treatments:[
+"Cardiology",
+"Neurology",
+"Gastroenterology",
+"Orthopaedics",
+"Joint Replacement",
+"Cardiac Care",
+"Critical Care",
+"Mother & Child Care",
+"General Surgery"
+]
+},
+
+{
+name:"Netaji Subhash Chandra Bose Medical College",
+city:"Jabalpur",
+type:"Government",
+location:"Tilwara Road, Jabalpur",
+treatments:[
+"General Medicine",
+"General Surgery",
+"Orthopaedics",
+"Paediatrics",
+"Cardiology",
+"Neurology",
+"Obstetrics & Gynaecology",
+"Emergency Care"
+]
+},
+
+{
+name:"Jaya Arogya Hospital",
+city:"Gwalior",
+type:"Government",
+location:"JAH Campus, Kampoo, Gwalior",
+treatments:[
+"General Medicine",
+"General Surgery",
+"Orthopaedics",
+"Paediatrics",
+"Cardiology",
+"Neurology",
+"Emergency Care",
+"Obstetrics & Gynaecology"
+]
+},
+
+{
+name:"Gajraraja Medical College",
+city:"Gwalior",
+type:"Government",
+location:"Kampoo, Gwalior",
+treatments:[
+"Medical Care",
+"General Surgery",
+"Medicine",
+"Paediatrics",
+"Orthopaedics",
+"Emergency Care"
+]
+},
+
+{
+name:"Kamlaraja Hospital",
+city:"Gwalior",
+type:"Government",
+location:"JAH Campus, Kampoo, Gwalior",
+treatments:[
+"Obstetrics & Gynaecology",
+"Women Healthcare",
+"General Medicine",
+"Surgery",
+"Emergency Care"
+]
+},
+
+{
+name:"Shalby Hospital Gwalior",
+city:"Gwalior",
+type:"Private",
+location:"Kampoo Road, Gwalior",
+treatments:[
+"Orthopaedics",
+"Joint Replacement",
+"Spine Surgery",
+"Urology",
+"IVF",
+"Gynaecology",
+"Orthopaedic Trauma"
+]
+}
+
+];
+
+
+/* =========================
+   DISPLAY HOSPITALS
+========================= */
+
+const grid =
+document.getElementById("hospitalGrid");
+
+
+function displayHospitals(list){
+
+    grid.innerHTML = "";
+
+
+    if(list.length === 0){
+
+        grid.innerHTML = `
+        <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:40px">
+
+            <h3>
+                ❌ No hospital found
+            </h3>
+
+            <p>
+                Try another search.
+            </p>
+
+        </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach((hospital,index)=>{
+
+        const card =
+        document.createElement("div");
+
+
+        card.className =
+        "hospital-card";
+
+
+        card.innerHTML = `
+
+            <div class="hospital-icon">
+                🏥
+            </div>
+
+            <h3>
+                ${hospital.name}
+            </h3>
+
+            <div class="city">
+                📍 ${hospital.city}
+            </div>
+
+            <span class="type">
+                ${hospital.type}
+            </span>
+
+            <p class="location">
+                ${hospital.location}
+            </p>
+
+            <div class="treatments">
+
+                ${hospital.treatments
+                .slice(0,5)
+                .map(
+                t =>
+                `<span class="tag">
+                    ${t}
+                </span>`
+                )
+                .join("")}
+
+            </div>
+
+            <button
+            class="details-btn"
+            onclick="showHospital(${index})">
+
+                View Details
+
+            </button>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function filterHospitals(){
+
+    const search =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
+
+
+    const city =
+    document.getElementById("cityFilter")
+    .value;
+
+
+    const type =
+    document.getElementById("typeFilter")
+    .value;
+
+
+    const filtered =
+    hospitals.filter(hospital=>{
+
+
+        const searchMatch =
+
+        hospital.name
+        .toLowerCase()
+        .includes(search)
+
+        ||
+
+        hospital.city
+        .toLowerCase()
+        .includes(search)
+
+        ||
+
+        hospital.treatments
+        .join(" ")
+        .toLowerCase()
+        .includes(search);
+
+
+        const cityMatch =
+        city === "all" ||
+        hospital.city === city;
+
+
+        const typeMatch =
+        type === "all" ||
+        hospital.type === type;
+
+
+        return
+        searchMatch &&
+        cityMatch &&
+        typeMatch;
+
+    });
+
+
+    displayHospitals(filtered);
+
+}
+
+
+/* =========================
+   HOSPITAL DETAILS
+========================= */
+
+function showHospital(index){
+
+    const hospital =
+    hospitals[index];
+
+
+    document.getElementById(
+    "modalData"
+    ).innerHTML = `
+
+        <h2>
+            🏥 ${hospital.name}
+        </h2>
+
+        <p>
+            <strong>City:</strong>
+            ${hospital.city}
+        </p>
+
+        <p style="margin-top:8px">
+
+            <strong>Type:</strong>
+            ${hospital.type}
+
+        </p>
+
+        <p style="margin-top:8px">
+
+            <strong>Location:</strong>
+            ${hospital.location}
+
+        </p>
+
+
+        <h3>
+            🩺 Treatments / Specialties
+        </h3>
+
+
+        <div>
+
+            ${hospital.treatments
+            .map(
+            t =>
+            `<span class="tag">
+                ${t}
+            </span>`
+            )
+            .join("")}
+
+        </div>
+
+
+        <h3>
+            📅 Appointment
+        </h3>
+
+
+        <button
+        class="submit-btn"
+        onclick="
+        closeModal();
+        document.getElementById('appointment')
+        .scrollIntoView();
+        document.getElementById(
+        'appointmentHospital'
+        ).value='${hospital.name}';
+        ">
+
+            Book Appointment
+
+        </button>
+
+    `;
+
+
+    document.getElementById(
+    "hospitalModal"
+    ).style.display="flex";
+
+}
+
+
+function closeModal(){
+
+    document.getElementById(
+    "hospitalModal"
+    ).style.display="none";
+
+}
+
+
+/* =========================
+   APPOINTMENT DROPDOWN
+========================= */
+
+const appointmentHospital =
+document.getElementById(
+"appointmentHospital"
+);
+
+
+hospitals.forEach(hospital=>{
+
+    const option =
+    document.createElement("option");
+
+
+    option.value =
+    hospital.name;
+
+
+    option.textContent =
+    hospital.name +
+    " - " +
+    hospital.city;
+
+
+    appointmentHospital
+    .appendChild(option);
+
+});
+
+
+/* =========================
+   BOOK APPOINTMENT
+========================= */
+
+function bookAppointment(){
+
+    const name =
+    document.getElementById(
+    "patientName"
+    ).value;
+
+
+    const phone =
+    document.getElementById(
+    "phone"
+    ).value;
+
+
+    const hospital =
+    document.getElementById(
+    "appointmentHospital"
+    ).value;
+
+
+    if(
+    name === "" ||
+    phone === ""
+    ){
+
+        alert(
+        "Please enter patient name and phone number."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+
+    "✅ Appointment request submitted!\n\n" +
+
+    "Patient: " +
+    name +
+
+    "\nHospital: " +
+    hospital +
+
+    "\n\nThis is a demo prototype."
+
+    );
+
+}
+
+
+/* =========================
+   REPORT UPLOAD
+========================= */
+
+function uploadReport(){
+
+    const file =
+    document.getElementById(
+    "report"
+    ).files[0];
+
+
+    if(file){
+
+        document.getElementById(
+        "reportStatus"
+        ).innerHTML =
+
+        "✅ Report selected: " +
+        file.name;
+
+
+        document.getElementById(
+        "reportCount"
+        ).innerText = "1";
+
+    }
+
+}
+
+
+/* =========================
+   JOURNEY TRACKING
+========================= */
+
+let journeyStep = 2;
+
+
+function nextJourneyStep(){
+
+    if(journeyStep >= 7){
+
+        alert(
+        "🎉 Patient journey completed!"
+        );
+
+        return;
+
+    }
+
+
+    journeyStep++;
+
+
+    const steps =
+    document.querySelectorAll(
+    ".step"
+    );
+
+
+    steps.forEach(
+    (step,index)=>{
+
+        step.classList.remove(
+        "active",
+        "completed"
+        );
+
+
+        if(
+        index < journeyStep-1
+        ){
+
+            step.classList.add(
+            "completed"
+            );
+
+        }
+
+        else if(
+        index === journeyStep-1
+        ){
+
+            step.classList.add(
+            "active"
+            );
+
+        }
+
+    });
+
+
+    const progress =
+    ((journeyStep-1)/6)*100;
+
+
+    document.getElementById(
+    "progressBar"
+    ).style.width =
+    progress + "%";
+
+}
+
+
+/* =========================
+   CHATBOT
+========================= */
+
+function toggleChat(){
+
+    const chat =
+    document.getElementById(
+    "chatWindow"
+    );
+
+
+    if(
+    chat.style.display === "block"
+    ){
+
+        chat.style.display =
+        "none";
+
+    }
+
+    else{
+
+        chat.style.display =
+        "block";
+
+    }
+
+}
+
+
+function sendMessage(){
+
+    const input =
+    document.getElementById(
+    "chatInput"
+    );
+
+
+    const text =
+    input.value.trim();
+
+
+    if(text === "")
+    return;
+
+
+    const body =
+    document.getElementById(
+    "chatBody"
+    );
+
+
+    body.innerHTML += `
+
+        <div class="message user">
+
+            ${text}
+
+        </div>
+
+    `;
+
+
+    let reply =
+    "Main hospital, treatment, appointment aur travel information mein help kar sakta hoon.";
+
+
+    const lower =
+    text.toLowerCase();
+
+
+    if(
+    lower.includes("hospital") ||
+    lower.includes("अस्पताल")
+    ){
+
+        reply =
+        "Hospital section mein city aur treatment ke according hospital search kar sakte hain.";
+
+    }
+
+
+    else if(
+    lower.includes("appointment") ||
+    lower.includes("अपॉइंटमेंट")
+    ){
+
+        reply =
+        "Appointment ke liye Appointment section mein apni details fill karein.";
+
+    }
+
+
+    else if(
+    lower.includes("travel") ||
+    lower.includes("यात्रा")
+    ){
+
+        reply =
+        "Travel section mein airport, railway, transport aur hotel information available hai.";
+
+    }
+
+
+    else if(
+    lower.includes("cardio") ||
+    lower.includes("heart") ||
+    lower.includes("दिल")
+    ){
+
+        reply =
+        "Cardiology ki facility kai listed hospitals mein available hai. Hospital se availability verify karein.";
+
+    }
+
+
+    setTimeout(()=>{
+
+        body.innerHTML += `
+
+            <div class="message bot">
+
+                ${reply}
+
+            </div>
+
+        `;
+
+
+        body.scrollTop =
+        body.scrollHeight;
+
+
+    },500);
+
+
+    input.value = "";
+
+}
+
+
+/* =========================
+   HOSPITAL COUNT
+========================= */
+
+document.getElementById(
+"hospitalCount"
+).innerText =
+hospitals.length;
+
+
+/* =========================
+   INITIAL DISPLAY
+========================= */
+
+displayHospitals(hospitals);
+
+</script>
+
+
+</body>
+
+</html>
+
+
+
+
+
